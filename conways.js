@@ -18,6 +18,19 @@ function randomNumber(population) {
   return num
 }
 
+function countNeighbours(cell) {
+  for (var i = -1; i < 2; i++) {
+    for (var j = -1; j < 2; j++) {
+      if (!((i == 0) && (j == 0))) {
+          console.log([i, j]);
+      }
+
+    }
+  }
+}
+
+countNeighbours()
+
 function isOutOfBounds(row, column) {
 
 }
