@@ -8,6 +8,15 @@ function runGame(size, population) {
   processBoard(board)
   console.log('------------')
   console.log(board)
+  processBoard(board)
+  console.log('------------')
+  console.log(board)
+  processBoard(board)
+  console.log('------------')
+  console.log(board)
+  processBoard(board)
+  console.log('------------')
+  console.log(board)
 
 }
 runGame(5, 0.6)
