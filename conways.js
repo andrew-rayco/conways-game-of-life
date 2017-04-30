@@ -4,7 +4,7 @@ function runGame(size, population) {
   var board = createBoard(size, population)
   cycle(processBoard(board))
 }
-runGame(88, 0.2)
+runGame(88, 0.1)
 
 // clears console, logs latest board, updates board (and repeats all)
 function cycle(board) {
