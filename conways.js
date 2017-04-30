@@ -1,25 +1,19 @@
-module.exports = {
-  createBoard
-}
+var clear = require('clear')
 
 function runGame(size, population) {
   var board = createBoard(size, population)
-  console.log(board)
-  processBoard(board)
-  console.log('------------')
-  console.log(board)
-  processBoard(board)
-  console.log('------------')
-  console.log(board)
-  processBoard(board)
-  console.log('------------')
-  console.log(board)
-  processBoard(board)
-  console.log('------------')
-  console.log(board)
-
+  cycle(processBoard(board))
 }
-runGame(5, 0.6)
+runGame(8, 0.6)
+
+// clears console, logs latest board, updates board (and repeats all)
+function cycle(board) {
+  setInterval(function() {
+    clear()
+    console.log(board)
+    board = processBoard(board)
+  }, 500)
+}
 
 // creates and randomly populates board
 function createBoard(size, population) {
@@ -33,11 +27,12 @@ function createBoard(size, population) {
   return board
 }
 
-// generates random population number if no
+
+// generates random population number if
 // population argument is specified for runGame
 function randomNumber(population) {
-  var num = (Math.random() < (population || 0.35)) ? 1 : 0
-  return num
+  var bool = (Math.random() < (population || 0.35)) ? true : false
+  return bool
 }
 
 function processBoard(board) {
@@ -48,15 +43,18 @@ function processBoard(board) {
       board[i][j] = aliveOrDead(board[i][j], aliveNeighbourCount)
     }
   }
+  return board
 }
 
 function aliveOrDead(cell, aliveNeighbours) {
   if (aliveNeighbours <= 1 || aliveNeighbours >= 4) {
-    return 0
-  } else if (cell == 0 && aliveNeighbours == 3){
-    return 1
-  } else {
-    return 1
+    return false
+  } else if (aliveNeighbours == 3){
+    return true
+  } else if (aliveNeighbours == 2 && cell == false) {
+    return false
+  } else if (aliveNeighbours == 2 && cell == true) {
+    return true
   }
 }
 
@@ -67,7 +65,7 @@ function getNeighbours(row, column, board) {
     for (var j = column - 1; j < column + 2; j++) {
       if ((i !== row) || (j !== column)) {
         if (!outOfBounds(i, j, board)) {
-          if (board[i][j] === 1) {
+          if (board[i][j] === true) {
             aliveNeighbourCount++
           }
         }
@@ -80,4 +78,10 @@ function getNeighbours(row, column, board) {
 // check if any cells are out of bounds
 function outOfBounds(row, column, board) {
   return row < 0 || column < 0 || row >= board.length || column >= board.length
+}
+
+module.exports = {
+  createBoard,
+  outOfBounds,
+  aliveOrDead
 }
