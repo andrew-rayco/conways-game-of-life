@@ -1,6 +1,7 @@
 var test = require('tape')
 var conways = require('../conways')
 
+
 test('createBoard will make a board the right size', function(t) {
   var size = 3
   var expected = conways.createBoard(3).length
@@ -9,11 +10,13 @@ test('createBoard will make a board the right size', function(t) {
   t.end()
 })
 
+
 test('each row of the returned board is a different array', function(t) {
   var board = conways.createBoard(2)
   t.notEqual(board[0], board[1])
   t.end()
 })
+
 
 test('outOfBounds returns true if row that has neighbour cell is out of bounds', function (t) {
   var row = -1
@@ -24,6 +27,7 @@ test('outOfBounds returns true if row that has neighbour cell is out of bounds',
   t.equal(conways.outOfBounds(row, column, board), expected)
   t.end()
 })
+
 
 test('aliveOrDead correctly kills or spawns an alive cell', function (t) {
   var cell = true
@@ -44,6 +48,7 @@ test('aliveOrDead correctly kills or spawns an alive cell', function (t) {
 
   t.end()
 })
+
 
 test('aliveOrDead correctly spawns or keeps dead a dead cell', function (t) {
   var cell = 0

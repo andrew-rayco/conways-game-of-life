@@ -1,10 +1,12 @@
 var clear = require('clear')
 
+
 function runGame(size, population) {
   var board = createBoard(size, population)
   cycle(processBoard(board))
 }
 runGame(88, 0.1)
+
 
 // clears console, logs latest board, updates board (and repeats all)
 function cycle(board) {
@@ -14,6 +16,7 @@ function cycle(board) {
     board = processBoard(board)
   }, 150)
 }
+
 
 // creates and randomly populates board
 function createBoard(size, population) {
@@ -27,7 +30,7 @@ function createBoard(size, population) {
   return board
 }
 
-
+// alter array to string and log to console
 function displayBoard(board) {
   for (var i = 0; i < board.length; i++) {
     var row = board[i]
@@ -43,7 +46,7 @@ function displayBoard(board) {
     console.log(string)
   }
 }
-// displayBoard(createBoard(16, 0.45))
+
 
 // generates random population number if
 // population argument is specified for runGame
@@ -52,6 +55,8 @@ function randomNumber(population) {
   return bool
 }
 
+
+// iterate through board to count neighbours and process cell accordingly
 function processBoard(board) {
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board.length; j++) {
@@ -63,6 +68,8 @@ function processBoard(board) {
   return board
 }
 
+
+// apply conways rules to cells
 function aliveOrDead(cell, aliveNeighbours) {
   if (aliveNeighbours <= 1 || aliveNeighbours >= 4) {
     return false
@@ -74,6 +81,7 @@ function aliveOrDead(cell, aliveNeighbours) {
     return true
   }
 }
+
 
 // return neighbours relative to cell being checked
 function getNeighbours(row, column, board) {
@@ -96,6 +104,7 @@ function getNeighbours(row, column, board) {
 function outOfBounds(row, column, board) {
   return row < 0 || column < 0 || row >= board.length || column >= board.length
 }
+
 
 module.exports = {
   createBoard,
