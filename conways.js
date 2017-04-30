@@ -4,15 +4,15 @@ function runGame(size, population) {
   var board = createBoard(size, population)
   cycle(processBoard(board))
 }
-runGame(8, 0.6)
+runGame(88, 0.08)
 
 // clears console, logs latest board, updates board (and repeats all)
 function cycle(board) {
   setInterval(function() {
     clear()
-    console.log(board)
+    displayBoard(board)
     board = processBoard(board)
-  }, 500)
+  }, 200)
 }
 
 // creates and randomly populates board
@@ -27,6 +27,23 @@ function createBoard(size, population) {
   return board
 }
 
+
+function displayBoard(board) {
+  for (var i = 0; i < board.length; i++) {
+    var row = board[i]
+    var string = ''
+    row.map(markCells)
+    function markCells(cell) {
+      if (cell) {
+        string += 'x'
+      } else {
+        string += '-'
+      }
+    }
+    console.log(string)
+  }
+}
+// displayBoard(createBoard(16, 0.45))
 
 // generates random population number if
 // population argument is specified for runGame
