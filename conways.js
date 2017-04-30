@@ -38,9 +38,9 @@ function displayBoard(board) {
     row.map(markCells)
     function markCells(cell) {
       if (cell) {
-        string += 'x'
+        string += 'o'
       } else {
-        string += '-'
+        string += ' '
       }
     }
     console.log(string)
