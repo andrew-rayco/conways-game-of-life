@@ -4,7 +4,7 @@ function runGame(size, population) {
   var board = createBoard(size, population)
   cycle(processBoard(board))
 }
-runGame(88, 0.08)
+runGame(88, 0.2)
 
 // clears console, logs latest board, updates board (and repeats all)
 function cycle(board) {
@@ -12,7 +12,7 @@ function cycle(board) {
     clear()
     displayBoard(board)
     board = processBoard(board)
-  }, 200)
+  }, 150)
 }
 
 // creates and randomly populates board
